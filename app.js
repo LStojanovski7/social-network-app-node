@@ -17,6 +17,8 @@ const mongoose = require('mongoose');
 const app = express();
 mongoose.connect('mongodb://localhost:27017/social-app');
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 require('dotenv').config();
 
@@ -36,6 +38,8 @@ app.use('/users', userRoute);
 app.use('/comments', commentRoute);
 app.use('/import', importRoute);
 
+//swagger UI
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
