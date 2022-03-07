@@ -3,7 +3,7 @@ const Comment = require('../models/comment');
 
 const getAll = async (req, res) => {
 
-  const comments = await Comment.find().populate('user').populate('post', 'title');
+  const comments = await Comment.find().populate('user', 'first_name last_name').populate('post', 'title');
 
   res.send({
     error: false,
