@@ -16,7 +16,10 @@ const mongoose = require('mongoose');
 // MVC: Model View Controller
 
 const app = express();
-mongoose.connect('mongodb://localhost:27017/social-app');
+
+const connectionString = process.env.DB_CONNECTION;
+mongoose.connect(connectionString);
+// mongoose.connect('mongodb://localhost:27017/social-app');
 
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json');
