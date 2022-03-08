@@ -8,6 +8,7 @@ const postRoute = require('./routes/postRoute');
 const userRoute = require('./routes/userRoute');
 const commentRoute = require('./routes/commentRoute');
 const importRoute = require('./routes/importRoute');
+const homeRoute = require('./routes/homeRoute');
 const mongoose = require('mongoose');
 
 
@@ -22,9 +23,9 @@ const swaggerDocument = require('./swagger.json');
 
 require('dotenv').config();
 
-// // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
 
 
 app.use(logger('dev'));
@@ -33,6 +34,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', homeRoute);
 app.use('/posts', postRoute);
 app.use('/users', userRoute);
 app.use('/comments', commentRoute);
